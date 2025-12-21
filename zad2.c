@@ -20,11 +20,10 @@ int main()
     // *liga je taj "niz" koji ima neki broj timova, a n je broj clanova
     TIM *liga;
     int n;
-
     liga = formiraj(&n);
 
     sortiraj(liga, n);
-
+    
     ispisi(liga, n);
 
     // jer je heap memory mora se free inace ce nas brdja poobarat
@@ -43,12 +42,13 @@ void ucitaj(TIM *t)
 // da se stavilo samo n pravila bi se kopija a nama treba promjenit i u main()
 TIM* formiraj(int *n)
 {
+    // SYBAU MRVA I TVOJE PJEVANJE (da ovde mi mrva doso pjevat u pozivu)
     TIM *niz;
     scanf("%d", n);
 
     // Dinamicka alokacija memorije za niz (dabogda plano ko izmisli ovo)
     niz = (TIM *)malloc((*n) * sizeof(TIM));
-    if(niz == NULL) // provjera jel dobro alociro ako nije da zna
+    if(niz == NULL) // provjera jel dobro alociro ako nije da zna da je balija
     {
         printf("Greska u alokaciji memorije\n");
         return NULL;
