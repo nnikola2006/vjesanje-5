@@ -25,7 +25,7 @@ int main()
     TACKA t[3];
     TROUGAO tr;
 
-    // Ucitava 3 tacke
+    // Ucitava 3 tacke (puljke)
     for(int i = 0; i < 3; i++)
     {
         citaj(&t[i]);
@@ -37,7 +37,6 @@ int main()
         printf("Ne moze se formirati trougao\n");
         return 0;
     }
-
     tr = trougao(t);
 
     printf("Obim trougla = %.2lf\n", obim(tr));
@@ -69,7 +68,7 @@ int provjera(TACKA *t)
 
 TROUGAO trougao(TACKA *t)
 {
-    TROUGAO tr;
+    TROUGAO tr; // trtrtrtrtrtrtr SAMO TURBODIZEL BAJOOOO PUSI GA STRAHINJA
 
     tr.A = t[0];
     tr.B = t[1];
