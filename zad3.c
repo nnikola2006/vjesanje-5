@@ -30,7 +30,7 @@ int main()
             ispisi(dok[i]);
         }
     }
-    // jer je heap memory mora se free inace ce nas brda poobarat
+    // jer je heap memory mora se free inace ce nas brdja poobarat
     free(dok);
 
     return 0;
