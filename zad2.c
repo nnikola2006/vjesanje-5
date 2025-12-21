@@ -27,7 +27,7 @@ int main()
 
     ispisi(liga, n);
 
-    // jer je heap memory mora se free inace ce nas brda poobarat
+    // jer je heap memory mora se free inace ce nas brdja poobarat
     free(liga);
 
     return 0;
