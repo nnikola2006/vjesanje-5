@@ -6,7 +6,7 @@ typedef struct
 {
     char naziv[30];
     int dati;
-    int primljeni;
+    int primljeni; // ha ha oni ga primaju jesam smijesan
     int bodovi;
 } TIM;
 
@@ -44,10 +44,9 @@ void ucitaj(TIM *t)
 TIM* formiraj(int *n)
 {
     TIM *niz;
-
     scanf("%d", n);
 
-    // Dinamicka alokacija memorije za niz
+    // Dinamicka alokacija memorije za niz (dabogda plano ko izmisli ovo)
     niz = (TIM *)malloc((*n) * sizeof(TIM));
     if(niz == NULL) // provjera jel dobro alociro ako nije da zna
     {
@@ -55,7 +54,7 @@ TIM* formiraj(int *n)
         return NULL;
     }
 
-    // ucitava timove
+    // ucitava balije
     for(int i = 0; i < *n; i++)
     {
         ucitaj(&niz[i]);
