@@ -104,17 +104,83 @@ double obim(TROUGAO t)
 
 
 
-// MODIFIKACIJA
-double povrsina(TROUGAO t)
+// Pomocna funkcija
+double distanca(TACKA a, TACKA b)
 {
-    // Računanje stranica
-    double a = sqrt((t.A.x - t.B.x)*(t.A.x - t.B.x) + (t.A.y - t.B.y)*(t.A.y - t.B.y));
-    double b = sqrt((t.B.x - t.C.x)*(t.B.x - t.C.x) + (t.B.y - t.C.y)*(t.B.y - t.C.y));
-    double c = sqrt((t.A.x - t.C.x)*(t.A.x - t.C.x) + (t.A.y - t.C.y)*(t.A.y - t.C.y));
+    return sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
+}
 
-    // Poluperimetar
+
+// MODIFIKACIJA
+int je_jednakokraki(TROUGAO *t)
+{
+    double a = distanca(t->A, t->B);
+    double b = distanca(t->B, t->C);
+    double c = distanca(t->A, t->C);
+
+    if(a == b || a == c || b == c)
+        return 1;
+
+    return 0;
+}
+
+double povrsina(TROUGAO *t)
+{
+    double a = distanca(t->A, t->B);
+    double b = distanca(t->B, t->C);
+    double c = distanca(t->A, t->C);
+
     double s = (a + b + c) / 2.0;
 
-    // Heronova formula
     return sqrt(s * (s - a) * (s - b) * (s - c));
 }
+
+int je_pravougli(TROUGAO *t)
+{
+    double a = distanca(t->A, t->B);
+    double b = distanca(t->B, t->C);
+    double c = distanca(t->A, t->C);
+
+    if(a*a + b*b == c*c)
+        return 1;
+    if(a*a + c*c == b*b)
+        return 1;
+    if(b*b + c*c == a*a)
+        return 1;
+
+    return 0;
+}
+
+double R(TROUGAO *t)
+{
+    double a = distanca(t->A, t->B);
+    double b = distanca(t->B, t->C);
+    double c = distanca(t->A, t->C);
+
+    return (a * b * c) / (4.0 * povrsina(t));
+}
+
+double r(TROUGAO *t)
+{
+    double a = distanca(t->A, t->B);
+    double b = distanca(t->B, t->C);
+    double c = distanca(t->A, t->C);
+
+    double s = (a + b + c) / 2.0;
+
+    return povrsina(t) / s;
+}
+
+int je_nejednakostranicni(TROUGAO *t)
+{
+    double a = distanca(t->A, t->B);
+    double b = distanca(t->B, t->C);
+    double c = distanca(t->A, t->C);
+
+    if(a != b && a != c && b != c)
+        return 1;
+
+    return 0;
+}
+
+
