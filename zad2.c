@@ -121,6 +121,11 @@ void ispisi(TIM *t, int n)
 
 
 
+// U slucaju alokacije dinamicke memorije ide
+/* int *niz, n = 10;
+ * niz = (int*)malloc(n * sizeof(int)); 
+ * Ovo alocira 10 elemenata u  nizu
+ */
 // AKO SLUCAJNO budu jeli govna za razmak kod stringa npr. Crvena Zvezda
 // samo prepravite funckiju ucitaj u ovo
 void ucitaj(TIM *t)
