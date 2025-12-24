@@ -103,7 +103,11 @@ double obim(TROUGAO t)
 
 
 
-
+// U slucaju alokacije dinamicke memorije ide
+/* int *niz, n = 10;
+ * niz = (int*)malloc(n * sizeof(int)); 
+ * Ovo alocira 10 elemenata u  nizu
+ */
 // Pomocna funkcija
 double distanca(TACKA a, TACKA b)
 {
