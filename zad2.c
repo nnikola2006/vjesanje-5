@@ -123,11 +123,24 @@ void ispisi(TIM *t, int n)
 
 // U slucaju alokacije dinamicke memorije ide
 /* int *niz, n = 10;
- * niz = (int*)malloc(n * sizeof(int)); 
- * Ovo alocira 10 elemenata u  nizu
+ * niz = (int*)malloc(n * sizeof(int)); Ovo alocira 10 elemenata u nizu
+ * free(niz);
  */
-// AKO SLUCAJNO budu jeli govna za razmak kod stringa npr. Crvena Zvezda
-// samo prepravite funckiju ucitaj u ovo
+// AKO JE 2D niz onda ide
+/*  int n = 10, **mat = (int **)calloc(n, sizeof(int *));
+    for (i = 0; i < n; i++)
+    {
+        mat[i] = (int *)calloc(m, sizeof(int));
+        // *(mat + i) = (int *)calloc(m, sizeof(int));
+        for (j = 0; j < m; j++, b++)
+            mat[i][j] = b; // *(*(mat + i) + j) = b;
+    }
+
+    // Ovo se mora na kraju programa napisat
+    for (i = 0; i < n; i++)
+        free(mat[i]); // free(*(mat + i));
+    free(mat);
+ */
 void ucitaj(TIM *t)
 {
     printf("Unesite naziv tima: ");
