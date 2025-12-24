@@ -1,3 +1,48 @@
+#include <string.h>
+
+// 1. Kopiranje
+char *strcpy(char *dest, const char *src);        // Kopira cijeli string
+char *strncpy(char *dest, const char *src, size_t n); // Kopira do n karaktera
+
+// 2. Dodavanje / konkatenacija
+char *strcat(char *dest, const char *src);       // Dodaje src na kraj dest
+char *strncat(char *dest, const char *src, size_t n); // Dodaje do n karaktera
+
+// 3. Upoređivanje
+int strcmp(const char *s1, const char *s2);     // Poredi cijele stringove
+int strncmp(const char *s1, const char *s2, size_t n); // Poredi do n karaktera
+
+// 4. Traženje
+char *strchr(const char *s, int c);             // Prvi nastup karaktera c
+char *strrchr(const char *s, int c);            // Posljednji nastup karaktera c
+char *strstr(const char *haystack, const char *needle); // Prvi nastup substringa
+
+// 5. Dužina
+size_t strlen(const char *s);                   // Broj karaktera prije '\0'
+
+// 6. Traženje prvog karaktera iz seta
+char *strpbrk(const char *s, const char *accept); // Prvi karakter iz accept koji se pojavljuje u s
+
+// 7. Traženje posljednjeg dijela stringa iz seta
+char *strrchr(const char *s, int c);           // Posljednje pojavljivanje karaktera
+
+// 8. Tokenizacija
+char *strtok(char *str, const char *delim);    // Razdvaja string po delimiters
+
+// 9. Formiranje i kopiranje sa sigurnošću
+size_t strlcpy(char *dest, const char *src, size_t size); // Sigurnija kopija (nije standard C, BSD)
+size_t strlcat(char *dest, const char *src, size_t size); // Sigurna konkatenacija (BSD)
+
+// 10. Memorijska manipulacija
+void *memset(void *s, int c, size_t n);        // Postavlja n bajtova na c
+void *memcpy(void *dest, const void *src, size_t n); // Kopira n bajtova
+void *memmove(void *dest, const void *src, size_t n); // Kopira n bajtova sigurno kod preklapanja
+int memcmp(const void *s1, const void *s2, size_t n); // Poredi n bajtova
+void *memchr(const void *s, int c, size_t n);  // Prvi nastup c u n bajtova
+
+
+
+
 #include <stdio.h>
 
 // 1. strlen - vraća dužinu stringa
