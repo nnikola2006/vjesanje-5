@@ -59,3 +59,124 @@ void ispisi(DOKUMENT d)
 {
     printf("%s.%s | %ld [B]\n", d.naziv, d.ekstenzija, d.velicina);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MODIFIKACIJE
+void sortiraj(DOKUMENT *d, int n)
+{
+    DOKUMENT tmp;
+
+    for(int i = 0; i < n - 1; i++)
+    {
+        for(int j = i + 1; j < n; j++)
+        {
+            if(d[i].velicina < d[j].velicina)
+            {
+                tmp = d[i];
+                d[i] = d[j];
+                d[j] = tmp;
+            }
+        }
+    }
+}
+
+
+int ista_ekstenzija(DOKUMENT *d, int n, const char *ext)
+{
+    int brojac = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        if(strcmp(d[i].ekstenzija, ext) == 0)
+        {
+            brojac++;
+        }
+    }
+
+    return brojac;
+}
+// Ako ne znas stringove dadnu ovo
+int ista_velicina(DOKUMENT *d, int n, long vel)
+{
+    int brojac = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        if(d[i].velicina == vel)
+        {
+            brojac++;
+        }
+    }
+
+    return brojac;
+}
+
+
+// Promjena structa
+typedef struct
+{
+    char naziv[30];
+    char ekstenzija[10];
+    char autor[30];
+    long velicina;
+} DOKUMENT;
+void autor(DOKUMENT *d, int n, const char *autor)
+{
+    for(int i = 0; i < n; i++)
+    {
+        if(strcmp(d[i].autor, autor) == 0)
+        {
+            printf("%s.%s | %ld [B] | %02d.%02d.%d\n",
+                   d[i].naziv,
+                   d[i].ekstenzija,
+                   d[i].velicina,
+                   d[i].datum.dan,
+                   d[i].datum.mjesec,
+                   d[i].datum.godina);
+        }
+    }
+}
+
+
+// Novi struct
+typedef struct
+{
+    int dan;
+    int mjesec;
+    int godina;
+} DATUM;
+// Promjena structa
+typedef struct
+{
+    char naziv[30];
+    char ekstenzija[10];
+    long velicina;
+    DATUM datum;
+} DOKUMENT;
+void ispisi_2022(DOKUMENT *d, int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        if(d[i].datum.godina == 2022)
+        {
+            printf("%s.%s | %ld [B]\n",
+                   d[i].naziv,
+                   d[i].ekstenzija,
+                   d[i].velicina);
+        }
+    }
+}
