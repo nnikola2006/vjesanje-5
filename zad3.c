@@ -75,6 +75,11 @@ void ispisi(DOKUMENT d)
 
 
 
+// U slucaju alokacije dinamicke memorije ide
+/* int *niz, n = 10;
+ * niz = (int*)malloc(n * sizeof(int)); 
+ * Ovo alocira 10 elemenata u  nizu
+ */
 // MODIFIKACIJE
 void sortiraj(DOKUMENT *d, int n)
 {
