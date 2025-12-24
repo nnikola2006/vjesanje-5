@@ -21,7 +21,9 @@ int main()
     TIM *liga;
     int n;
     liga = formiraj(&n);
-
+    if(liga == NULL) // U slucaju da nekako ne proradi dinamicka alokacije memorije da ne kresuje program
+        return 1;
+    
     sortiraj(liga, n);
     
     ispisi(liga, n);
@@ -100,4 +102,202 @@ void ispisi(TIM *t, int n)
     {
         printf("%2d. %-27s %3d %3d %4d %4d\n", i + 1, t[i].naziv, t[i].dati, t[i].primljeni, t[i].dati - t[i].primljeni, t[i].bodovi);
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// AKO SLUCAJNO budu jeli govna za razmak kod stringa npr. Crvena Zvezda
+// samo prepravite funckiju ucitaj u ovo
+void ucitaj(TIM *t)
+{
+    printf("Unesite naziv tima: ");
+    fgets(t->naziv, 30, stdin);
+
+    // ukloni \n ako postoji
+    size_t len = strlen(t->naziv);
+    if(len > 0 && t->naziv[len-1] == '\n')
+        t->naziv[len-1] = '\0';
+
+    printf("Unesite dati golovi, primljeni golovi i bodove: ");
+    scanf("%d %d %d", &t->dati, &t->primljeni, &t->bodovi);
+
+    getchar(); // uklanja \n nakon scanf, da sljedeći fgets radi
+}
+
+
+// MODIFIKACIJE
+// SORTIRANJE PO NAZIVU (alfabetički)
+void sortiraj_alf(TIM *t, int n)
+{
+    TIM tmp;
+    for(int i = 0; i < n-1; i++)
+    {
+        for(int j = i+1; j < n; j++)
+        {
+            if(strcmp(t[i].naziv, t[j].naziv) > 0)
+            {
+                tmp = t[i];
+                t[i] = t[j];
+                t[j] = tmp;
+            }
+        }
+    }
+}
+
+// SORTIRANJE PO NAJMANJE PRIMLJENIM GOLOVIMA
+void sortiraj_primljeni(TIM *t, int n)
+{
+    TIM tmp;
+    for(int i = 0; i < n-1; i++)
+    {
+        for(int j = i+1; j < n; j++)
+        {
+            if(t[i].primljeni > t[j].primljeni)
+            {
+                tmp = t[i];
+                t[i] = t[j];
+                t[j] = tmp;
+            }
+        }
+    }
+}
+
+// SORTIRANJE PO NAJMANJE PRIMLJENIM GOLOVIMA
+void sortiraj_primljeni(TIM *t, int n)
+{
+    TIM tmp;
+    for(int i = 0; i < n-1; i++)
+    {
+        for(int j = i+1; j < n; j++)
+        {
+            if(t[i].primljeni > t[j].primljeni)
+            {
+                tmp = t[i];
+                t[i] = t[j];
+                t[j] = tmp;
+            }
+        }
+    }
+}
+
+int tim_sa_positivnom_gol_razlikom(TIM *t, int n)
+{
+    int count = 0;
+    for(int i = 0; i < n; i++)
+    {
+        if(t[i].dati - t[i].primljeni > 0)
+            count++;
+    }
+    return count;
+}
+
+int tim_sa_negativnom_gol_razlikom(TIM *t, int n)
+{
+    int count = 0;
+    for(int i = 0; i < n; i++)
+    {
+        if(t[i].dati - t[i].primljeni < 0)
+            count++;
+    }
+    return count;
+}
+
+int tim_sa_vise_datih_golova(TIM *t, int n, int min_golova)
+{
+    int count = 0;
+    for(int i = 0; i < n; i++)
+    {
+        if(t[i].dati > min_golova)
+            count++;
+    }
+    return count;
+}
+
+int tim_sa_istim_bodovima(TIM *t, int n, int bodovi)
+{
+    int count = 0;
+    for(int i = 0; i < n; i++)
+    {
+        if(t[i].bodovi == bodovi)
+            count++;
+    }
+    return count;
+}
+
+// BROJ TIMOVA SA ISTOM GOL RAZLIKOM
+int tim_sa_istom_gol_razlikom(TIM *t, int n, int gol_razlika)
+{
+    int count = 0;
+    for(int i = 0; i < n; i++)
+    {
+        if((t[i].dati - t[i].primljeni) == gol_razlika)
+            count++;
+    }
+    return count;
+}
+
+// NAJBOLJI TIM PO GOL RAZLICI (vraća indeks)
+int najbolji_po_gol_razlici(TIM *t, int n)
+{
+    int idx = 0;
+    int max = t[0].dati - t[0].primljeni;
+    for(int i = 1; i < n; i++)
+    {
+        int gr = t[i].dati - t[i].primljeni;
+        if(gr > max)
+        {
+            max = gr;
+            idx = i;
+        }
+    }
+    return idx;
+}
+
+// NAJGORI TIM PO BODOVIMA (vraća indeks)
+int najgori_tim(TIM *t, int n)
+{
+    int idx = 0;
+    int min = t[0].bodovi;
+    for(int i = 1; i < n; i++)
+    {
+        if(t[i].bodovi < min)
+        {
+            min = t[i].bodovi;
+            idx = i;
+        }
+    }
+    return idx;
+}
+
+// PROSJEK BODOVA LIGE
+double prosjek_bodova(TIM *t, int n)
+{
+    int suma = 0;
+    for(int i = 0; i < n; i++)
+        suma += t[i].bodovi;
+    return (double)suma / n;
+}
+
+// PROSJEK GOL RAZLIKE
+double prosjek_gol_razlike(TIM *t, int n)
+{
+    int suma = 0;
+    for(int i = 0; i < n; i++)
+        suma += t[i].dati - t[i].primljeni;
+    return (double)suma / n;
 }
